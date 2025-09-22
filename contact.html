@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Golden Years Fitness</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <span class="icon">💪</span> Golden Years Fitness
+            </div>
+           <!-- Hamburger menu nav START -->
+            <nav class="navbar">
+                <button class="hamburger" aria-label="Open menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <!-- Hamburger menu nav END -->
+        </div>
+    </header>
+    <main>
+        <div class="contact-wrapper container">
+            <section class="contact-info">
+                <h2>Contact Information</h2>
+                <p>Phone: <a href="tel:+15551234567">+1 (727) 456-7890</a></p>
+                <p>Email: <a href="mailto:info@goldenyearsfitness.com">info@goldenyearsfitness.com</a></p>
+                <p>Office Hours: Mon-Fri 8:00 AM - 5:00 PM</p>
+                <img src="/images/map.jpeg" alt="Location Map">
+            </section>
+
+            <section class="contact-form">
+                <h2>Send Us a Message</h2>
+                <form>
+                    <input type="text" placeholder="Name" required>
+                    <input type="email" placeholder="Email" required>
+                    <textarea placeholder="Message" required></textarea>
+                    <button type="submit" class="btn">Submit</button>
+                </form>
+            </section>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-col footer-contact">
+                <h4>Contact</h4>
+                <p>Phone: (727) 456-7890</p>
+                <p>Email: <a href="mailto:mike.chretien@gmail.com">mike.chretien@gmail.com</a></p>
+                <p>123 Wellness Ave, Tampa, FL</p>
+            </div>
+
+            <div class="footer-col footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="privacy.html">Privacy</a></li>
+                    <li><a href="terms.html">Terms &amp; Conditions</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col footer-social">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="https://facebook.com/yourpage" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com/yourprofile" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://instagram.com/yourprofile" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+     <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', function() {
+                navLinks.classList.toggle('show');
+            });
+        }
+    });
+    </script>
+</body> 
+</html> 

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Golden Years Fitness</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <span class="icon">💪</span> Golden Years Fitness
+            </div>
+            <!-- Hamburger menu nav START -->
+            <nav class="navbar">
+                <button class="hamburger" aria-label="Open menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <!-- Hamburger menu nav END -->
+        </div>
+    </header>
+    <main>
+        <section class="team">
+            <div class="container">
+                <h2>Meet Our Team</h2>
+                <p>Our trainers are dedicated professionals with a passion for improving the lives of older adults through tailored fitness programs. Learn more about their backgrounds and the philosophy that drives their approach.</p>
+                <div class="team-members">
+                    <div class="team-member">
+                        <img src="/images/lisa.png" alt="Lisa Thompson">
+                        <h3>Lisa Thompson</h3>
+                        <p>With over 15 years of experience in senior fitness, Lisa is passionate about helping older adults achieve their wellness goals.</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="/images/michael.png" alt="Michael Johnson">
+                        <h3>Michael Johnson</h3>
+                        <p>An expert in adaptive fitness techniques, Michael has been transforming lives with his motivational approach for over a decade.</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="/images/sophia.png" alt="Sophia Lee">
+                        <h3>Sophia Lee</h3>
+                        <p>Sophia specializes in yoga and meditation, offering a holistic approach to fitness for older adults seeking balance and peace.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-col footer-contact">
+                <h4>Contact</h4>
+                <p>Phone: (727) 456-7890</p>
+                <p>Email: <a href="mailto:mike.chretien@gmail.com">mike.chretien@gmail.com</a></p>
+                <p>123 Wellness Ave, Tampa, FL</p>
+            </div>
+
+            <div class="footer-col footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="privacy.html">Privacy</a></li>
+                    <li><a href="terms.html">Terms &amp; Conditions</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col footer-social">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="https://facebook.com/yourpage" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com/yourprofile" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://instagram.com/yourprofile" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+ <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', function() {
+                navLinks.classList.toggle('show');
+            });
+        }
+    });
+    </script>
+</body> 
+</html>
