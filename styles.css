@@ -363,56 +363,39 @@ section {
 /* Improve sidebar list readability for older adults */
 .resources-sidebar .sidebar-item ul {
     list-style-position: inside; /* keep bullets inside the colored box */
-    padding-left: 0.5rem;
-    margin-top: 8px;
+    padding-left: 0.8rem;
+    margin: 0;
 }
 
 .resources-sidebar .sidebar-item li {
-    color: #fff; /* white text for contrast */
-    font-size: 1.125rem; /* ~18px for easier reading */
-    margin-bottom: 8px;
+    color: #fff;
+    font-size: 1.25rem; /* larger for older adults */
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
+    text-align: left;
 }
 
 .resources-sidebar .sidebar-item li::marker {
-    color: #fff; /* white bullet marker */
-    font-size: 1.25rem;
+    color: #fff;
+    font-size: 1.2em;
 }
 
-/* Ensure .btn links inside .service look exactly like buttons */
-.service .btn {
-    text-decoration: none;
-    display: inline-block;
-    background-color: #66ff66;
-    color: rgb(12,12,12);
-    padding: 12px 20px;
-    border-radius: 4px;
+/* Service cards: ensure lists are left-aligned, bullets inside and larger */
+.service {
+    text-align: left; /* prevents centered list text */
 }
-.service .btn:hover {
-    background-color: #4CAF50;
-    transform: translateY(-1px);
+.service ul {
+    list-style-position: inside;
+    padding-left: 1rem;
+    margin: 0;
 }
-
-@media (max-width: 768px) {
-    .resources-wrapper {
-        flex-direction: column;
-    }
-    .resources-main, .resources-sidebar {
-        flex: 1 1 100%;
-        max-width: 100%;
-    }
+.service li {
+    font-size: 1.15rem;
+    margin-bottom: 0.5rem;
 }
-
-/* Apply site button style to service buttons */
-.service button {
-    margin-top: auto; /* push button to bottom of card */
-    align-self: flex-start;
-    box-sizing: border-box;
+.service li::marker {
+    font-size: 1.2em;
 }
-.service button.btn {
-    /* use the .btn styles (no reset here) */
-    display: inline-block;
-}
-
 
 .testimonials .container {
     display: flex;
