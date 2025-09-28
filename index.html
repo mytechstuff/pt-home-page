@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Golden Years Fitness</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Font Awesome CDN removed — using inline SVGs/local assets instead -->
 </head>
 <body>
     <header>
@@ -21,7 +21,7 @@
                     <span></span>
                 </button>
                 <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="resources.html">Resources</a></li>
@@ -103,22 +103,30 @@
             <div class="footer-col footer-social">
                 <h4>Follow Us</h4>
                 <div class="social-icons">
-                    <a href="https://facebook.com/yourpage" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://twitter.com/yourprofile" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://instagram.com/yourprofile" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://facebook.com/yourpage" target="_blank" aria-label="Facebook">
+                        <img src="images/facebook.svg" alt="Facebook" class="social-icon">
+                    </a>
+                    <a href="https://twitter.com/yourprofile" target="_blank" aria-label="Twitter">
+                        <img src="images/twitter.svg" alt="Twitter" class="social-icon">
+                    </a>
+                    <a href="https://instagram.com/yourprofile" target="_blank" aria-label="Instagram">
+                        <img src="images/instagram.svg" alt="Instagram" class="social-icon">
+                    </a>
                 </div>
             </div>
         </div>
     </footer>
     <!-- Hamburger menu JS -->
-     /* Needed some research but got it working */
-    <script> 
-        document.addEventListener('DOMContentLoaded', function() {
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
         if (hamburger && navLinks) {
+            hamburger.setAttribute('type','button');
+            hamburger.setAttribute('aria-expanded','false');
             hamburger.addEventListener('click', function() {
-                navLinks.classList.toggle('show');
+                const shown = navLinks.classList.toggle('show');
+                hamburger.setAttribute('aria-expanded', shown);
             });
         }
     });
