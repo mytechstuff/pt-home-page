@@ -824,19 +824,18 @@ section {
 
 /* Corner logo: clickable, constrained to header height and responsive */
 :root {
-    --gyf-logo-height: 113px; /* desktop header height */
+    --gyf-logo-height: 113px;
     --gyf-gutter: 24px;
 }
 
 .header-row {
-    position: relative;               /* container for absolutely-positioned logo */
+    position: relative;
     display: flex;
     align-items: center;
     gap: 12px;
     padding-left: calc(var(--gyf-logo-height) + var(--gyf-gutter));
 }
 
-/* Anchor wraps the image so the logo is clickable */
 .corner-link {
     position: absolute;
     top: 0;
@@ -846,17 +845,16 @@ section {
     text-decoration: none;
 }
 
-/* Image sizing: height-based so aspect ratio preserved, clickable */
 .corner-logo {
     display: block;
     height: var(--gyf-logo-height);
     width: auto;
     object-fit: contain;
-    pointer-events: auto; /* allow clicks */
+    pointer-events: auto;
     transition: height 180ms ease;
 }
 
-/* Tablet / small laptop */
+/* Tablet */
 @media (max-width: 1024px) {
     :root { --gyf-logo-height: 88px; --gyf-gutter: 16px; }
     .header-row { padding-left: calc(var(--gyf-logo-height) + var(--gyf-gutter)); }

@@ -9,26 +9,30 @@
 </head>
 <body>
     <header>
-        <div class="container">
-            <div class="logo">
-                <span class="icon">💪</span> Golden Years Fitness
-            </div>
-           <!-- Hamburger menu nav START -->
-            <nav class="navbar">
-                <button class="hamburger" aria-label="Open menu" type="button" aria-expanded="false">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="nav-links">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="resources.html">Resources</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-            <!-- Hamburger menu nav END -->
+        <div class="container header-row">
+            <!-- clickable corner logo (links to Home) -->
+            <a href="index.html" class="corner-link" aria-label="Home">
+                <img src="images/gyf corner.png" alt="GYF corner logo" class="corner-logo">
+            </a>
+             <div class="logo">
+                 <span class="icon">💪</span> Golden Years Fitness
+             </div>
+             <!-- Hamburger menu nav START -->
+             <nav class="navbar">
+                 <button class="hamburger" aria-label="Open menu" type="button" aria-expanded="false">
+                     <span></span>
+                     <span></span>
+                     <span></span>
+                 </button>
+                 <ul class="nav-links">
+                     <li><a href="index.html">Home</a></li>
+                     <li><a href="about.html">About</a></li>
+                     <li><a href="services.html">Services</a></li>
+                     <li><a href="Resources.html">Resources</a></li>
+                     <li><a href="contact.html" class="active">Contact</a></li>
+                 </ul>
+             </nav>
+             <!-- Hamburger menu nav END -->
         </div>
     </header>
     <main>
@@ -92,3 +96,50 @@
     </script>
 </body> 
 </html>
+
+<style>
+/* Corner logo: clickable, constrained to header height and responsive */
+:root {
+    --gyf-logo-height: 113px;
+    --gyf-gutter: 24px;
+}
+
+.header-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-left: calc(var(--gyf-logo-height) + var(--gyf-gutter));
+}
+
+.corner-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1300;
+    display: block;
+    text-decoration: none;
+}
+
+.corner-logo {
+    display: block;
+    height: var(--gyf-logo-height);
+    width: auto;
+    object-fit: contain;
+    pointer-events: auto;
+    transition: height 180ms ease;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+    :root { --gyf-logo-height: 88px; --gyf-gutter: 16px; }
+    .header-row { padding-left: calc(var(--gyf-logo-height) + var(--gyf-gutter)); }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    :root { --gyf-logo-height: 64px; --gyf-gutter: 12px; }
+    .header-row { padding-left: calc(var(--gyf-logo-height) + var(--gyf-gutter)); }
+    .corner-logo { height: var(--gyf-logo-height); }
+}
+</style>
