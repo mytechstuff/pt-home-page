@@ -26,9 +26,13 @@ body {
 
 .container {
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+    box-sizing: border-box;
 }
+
 /* --- Hamburger Menu Styles --- */
 .navbar {
     position: relative;
@@ -433,27 +437,105 @@ section {
     flex-direction: column;
 }
 
-.service img {
+/* Fix: services cards, images and aside width */
+
+/* container constraints (consistent page width) */
+.container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+    box-sizing: border-box;
+}
+
+/* Services grid (desktop 3-up, then 2-up, then 1-up) */
+.hero .services,
+.services {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    align-items: start;
     width: 100%;
-    height: auto;
-    max-height: 180px;
+}
+
+/* Each service card */
+.service {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: #fff;
+    padding: 18px;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(11,42,26,0.05);
+    border: 1px solid rgba(11,42,26,0.06);
+    color: inherit;
+}
+
+/* Images inside service cards - ensure visible and cover area */
+.service img {
+    width: 100% !important;
+    height: 160px;
     object-fit: cover;
-    border-radius: 6px;
-    margin-bottom: 12px;
+    display: block;
+    border-radius: 8px;
+}
+
+/* Buttons at bottom of card */
+.service .btn {
+    margin-top: auto;
+    align-self: flex-start;
+}
+
+/* Sidebar / aside width (for pages that use .resources-wrapper or similar) */
+.resources-wrapper,
+.container-grid,
+.page-layout {
+    /* keep existing grid usage but ensure aside is not too narrow */
+}
+
+/* Specific resources-wrapper adjustment: increase aside column */
+.resources-wrapper {
+    grid-template-columns: 1fr 360px; /* main / aside */
+    gap: 28px;
+}
+
+/* Ensure sidebar has minimum width */
+.resources-sidebar,
+.sidebar {
+    min-width: 300px;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1100px) {
+    .hero .services,
+    .services {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .resources-wrapper { grid-template-columns: 1fr 320px; }
+    .resources-sidebar { min-width: 260px; }
 }
 
 @media (max-width: 768px) {
-    .service {
-        flex: 1 1 100%;
-        max-width: 100%;
+    .hero .services,
+    .services {
+        grid-template-columns: 1fr;
     }
+    .resources-wrapper {
+        grid-template-columns: 1fr;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+    .resources-sidebar { min-width: auto; width: 100%; }
+    .corner-logo { height: 64px; } /* keep header spacing */
 }
 
-/* Resources two-column layout */
-.resources-wrapper {
-    display: flex;
-    gap: 28px;
-    align-items: flex-start;
+/* Safety: force images visible if some earlier rule hid them */
+.service img,
+.resource-item img,
+.services img {
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
 .resources-main {
@@ -987,101 +1069,105 @@ section {
     border-radius: 10px;
     padding: 22px;
     box-shadow: 0 6px 20px rgba(11, 42, 26, 0.06);
-    border: 1px solid rgba(11,42,26,0.06);
+    border: 1px solid rgba(11, 42, 26, 0.06);
 }
 
-/* layout for resources */
+/* Resources — card/grid fixes: 3-column cards on desktop, responsive down to 1-column */
 .resources-wrapper {
     display: grid;
-    grid-template-columns: 1fr 320px;
+    grid-template-columns: 1fr 320px; /* main / sidebar */
     gap: 28px;
     align-items: start;
     padding: 32px 0;
 }
 
-/* resource list items */
-.resource-list {
+/* Main resource grid: 3 columns on desktop */
+.resource-list,
+.services.resource-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 18px;
-}
-
-.resource-item {
-    display: flexbox;
-    flex-direction: row;
-    gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
     align-items: start;
 }
 
-.resource-item img {
-    width: 100%;
-    height: 140px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-/* sidebar tweaks */
-.resources-sidebar .sidebar-item { margin-bottom: 18px; }
-.downloads-list .btn { display: inline-block; padding: 8px 10px; }
-
-/* responsive */
-@media (max-width: 900px) {
-    .resources-wrapper {
-        grid-template-columns: 1fr;
-        padding: 18px 0;
-    }
-    .resources-sidebar { order: 2; }
-}
-
-/* ensure header padding accounts for corner logo */
-.header-row { padding-top: 6px; }
-
-/* ensure nav .card doesn't inherit dark nav rules on mobile */
-@media (max-width: 768px) {
-    .navbar .nav-links.show { left: 8px; right: 8px; }
-}
-
-/* Fix resources layout: enforce white cards and proper stacking */
-
-/* Ensure card class styling applies to resources main items and sidebar items */
-.resources-main .service.card,
-.resources-sidebar .sidebar-item.card {
+/* Card basics (applies to resource cards and sidebar panels) */
+.card {
     background: #fff;
-    color: inherit;
-    padding: 16px;
-    border-radius: 8px;
+    color: #0b2a1a; /* dark text for readability */
+    padding: 18px;
+    border-radius: 10px;
     box-shadow: 0 6px 20px rgba(11,42,26,0.06);
     border: 1px solid rgba(11,42,26,0.06);
+    overflow: visible;
 }
 
-/* Override any earlier light-green rule on .resources-main .service */
-.resources-main .service {
-    background: transparent !important;
-}
-
-/* Fix invalid 'flexbox' value and stack content vertically */
-.resource-item,
-.service.resource-item {
-    display: flex;               /* was invalid 'flexbox' */
+/* Individual resource card */
+.service.resource-item.card,
+.resource-item.card {
+    display: flex;
     flex-direction: column;
     gap: 12px;
-    align-items: stretch;
+    height: 100%;
 }
 
-/* Constrain images inside resource cards */
-.resource-item img,
-.service.resource-item img {
+/* Make sure images render and have consistent height */
+.service.resource-item.card img,
+.resource-item.card img {
     width: 100%;
     height: 160px;
     object-fit: cover;
-    border-radius: 6px;
+    border-radius: 8px;
     display: block;
 }
 
-/* Sidebar lists: restore readable spacing */
-.resources-sidebar .sidebar-item.card ul,
-.resources-sidebar .sidebar-item.card .downloads-list {
-    margin: 0;
-    padding-left: 1rem;
-    list-style-position: inside;
+/* Ensure heading / text are visible */
+.service.resource-item.card h3,
+.resource-item.card h3 {
+    margin: 0 0 6px 0;
+    color: inherit;
+    font-size: 1.05rem;
+}
+.service.resource-item.card p,
+.resource-item.card p {
+    margin: 0 0 10px 0;
+    color: inherit;
+    line-height: 1.45;
+}
+
+/* Buttons inside cards */
+.service.resource-item.card .btn,
+.resource-item.card .btn {
+    margin-top: auto;
+    align-self: flex-start;
+}
+
+/* Sidebar cards spacing */
+.resources-sidebar .sidebar-item.card {
+    margin-bottom: 18px;
+    padding: 16px;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1100px) {
+    .resource-list { grid-template-columns: repeat(2, 1fr); }
+    .resources-wrapper { grid-template-columns: 1fr 300px; gap: 20px; padding: 24px 0; }
+}
+
+@media (max-width: 768px) {
+    /* stack main + sidebar, single column cards */
+    .resources-wrapper { grid-template-columns: 1fr; padding: 18px 12px; }
+    .resource-list { grid-template-columns: 1fr; gap: 16px; }
+    .resources-sidebar { order: 2; }
+    .resources-main { order: 1; }
+    .corner-logo { height: 64px; } /* ensure header spacing remains */
+}
+
+/* Safety: force visible text if some other rule set color wrong */
+.page-resources,
+.page-resources .resources-main,
+.page-resources .resources-sidebar,
+.page-resources .card,
+.page-resources .resource-item,
+.page-resources .service {
+    color: #0b2a1a !important;
 }
