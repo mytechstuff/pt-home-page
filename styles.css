@@ -316,6 +316,102 @@ header {
     max-height: 220px;
 }
 
+/* --- Force 3-up wide cards with visible images --- */
+.services,
+.resource-list {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important; /* 3 across on large screens */
+    gap: 22px !important;
+    align-items: start !important;
+    width: 100% !important;
+}
+
+/* Make each card fill its grid cell and be a column so button can sit at bottom */
+.services .service,
+.resource-list .service,
+.resource-item {
+    display: flex !important;
+    flex-direction: column !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    min-height: 340px !important; /* uniform visual height on desktop */
+}
+
+/* Ensure images show and cover the top of each card */
+.services .service img,
+.resource-list .service img,
+.resource-item img {
+    display: block !important;
+    visibility: visible !important;
+    width: 100% !important;
+    height: 220px !important;      /* visual image height for cards */
+    object-fit: cover !important;
+    border-radius: 8px !important;
+    margin-bottom: 12px !important;
+}
+
+/* Uniform button sizing and pinned to card bottom */
+.services .service .btn,
+.resource-list .service .btn,
+.resource-item .btn {
+    margin-top: auto !important;
+    align-self: center !important;
+    min-width: 160px !important;
+    text-align: center !important;
+}
+
+/* Give resources main more room so cards look wider */
+.resources-wrapper {
+    display: grid !important;
+    grid-template-columns: 1fr 360px !important; /* main / aside */
+    gap: 28px !important;
+}
+
+/* Sidebar minimum width */
+.resources-sidebar,
+.sidebar {
+    min-width: 300px !important;
+}
+
+/* Responsive: 2-up then 1-up */
+@media (max-width: 1100px) {
+    .services,
+    .resource-list {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    .resources-wrapper {
+        grid-template-columns: 1fr 320px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .services,
+    .resource-list {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+    .resources-wrapper {
+        grid-template-columns: 1fr !important;
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+    .services .service,
+    .resource-list .service {
+        min-height: auto !important;
+    }
+    .services .service img,
+    .resource-list .service img {
+        height: 160px !important;
+    }
+}
+
+/* Safety: ensure readable text color */
+.services .service,
+.resource-list .service,
+.resource-item {
+    color: #0b2a1a !important;
+}
+
 /* contact us form section styles */
 section {
     background-color: #e0f2e0; /* Light Green Background */
@@ -494,7 +590,7 @@ section {
     /* keep existing grid usage but ensure aside is not too narrow */
 }
 
-/* Specific resources-wrapper adjustment: increase aside column */
+/* Specific resources-wrapper adjustment */
 .resources-wrapper {
     grid-template-columns: 1fr 360px; /* main / aside */
     gap: 28px;
@@ -530,7 +626,7 @@ section {
     .corner-logo { height: 64px; } /* keep header spacing */
 }
 
-/* Safety: force images visible if some earlier rule hid them */
+/* Ensure images visible (safety) */
 .service img,
 .resource-item img,
 .services img {
@@ -538,636 +634,335 @@ section {
     opacity: 1 !important;
 }
 
-.resources-main {
-    flex: 1 1 65%;
-    max-width: 65%;
-}
-
-.resources-sidebar {
-    flex: 1 1 30%;
-    max-width: 30%;
-}
-
-
-
-.resources-sidebar .sidebar-item {
-    background: #fff;
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 12px;
-}
-
-/* Resources-specific visual tweaks */
-/* Light green cards to match site theme but keep readable text */
-
-.resources-wrapper {
-    padding: 24px;
-}
-
-/* Cards should be white for contrast against the light-green background */
-.resources-main .service {
-    background: #e8f7e8; /* consistent light green cards */
-    color: #0a2a0a; /* readable text */
-}
-
-.resources-main .service h3 {
-    color: #0b2a0b;
-}
-
-/* Ensure .btn inside resource cards sits at the bottom like Service buttons */
-.resources-main .service .btn {
-    margin-top: auto;
-    align-self: flex-start;
-}
-
-/* Darker sidebar background while keeping text readable */
-.resources-sidebar .sidebar-item {
-    background: #9fc19f; /* darker but readable green */
-    color: #072007;
-}
-.resources-sidebar .sidebar-item a {
-    color: #062006;
-    text-decoration: underline;
-}
-
-/* Improve sidebar list readability for older adults */
-.resources-sidebar .sidebar-item ul {
-    list-style-position: inside; /* keep bullets inside the colored box */
-    padding-left: 0.8rem;
-    margin: 0;
-}
-
-.resources-sidebar .sidebar-item li {
-    color: #fff;
-    font-size: 1.25rem; /* larger for older adults */
-    margin-bottom: 0.6rem;
-    line-height: 1.4;
-    text-align: left;
-}
-
-.resources-sidebar .sidebar-item li::marker {
-    color: #fff;
-    font-size: 1.2em;
-}
-
-/* Service cards: ensure lists are left-aligned, bullets inside and larger */
-.service {
-    text-align: left; /* prevents centered list text */
-}
-.service ul {
-    list-style-position: inside;
-    padding-left: 1rem;
-    margin: 0;
-}
-.service li {
-    font-size: 1.15rem;
-    margin-bottom: 0.5rem;
-}
-.service li::marker {
-    font-size: 1.2em;
-}
-
-.testimonials .container {
+/* Keep the original flexible team/services layout (match About page) */
+.services {
     display: flex;
-    justify-content: space-between; /* to look more uniform*/
-    gap: 2rem; 
-    flex-wrap: wrap; /* allows wrapping on smaller screens */
-}
-
-.testimonial {
-    flex: 1 1 250px; /* grow, shrink, min width */
-    max-width: 300px;
-    width: 300px;
-    background: #fff;
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-
-/* CTA styles */
-.cta .container {
-    display: flex;
-    justify-content: space-between; 
-    gap: 2rem; /* space between items */
-    flex-wrap: wrap; /* allows wrapping  */
-    background-color: #f2f2f2;
-    padding: 40px 0;
-    justify-content: space-around;
+    gap: 20px;
+    justify-content: space-between;
     flex-wrap: wrap;
+    align-items: stretch;
 }
 
-.cta-item {
-    width: 300px;
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.cta .icon {
-    font-size: 2em;
-    margin-bottom: 10px;
-    color: #007bff;
-}
-
-/* Footer styles -- liked center better than left as screenshot shown*/
-/* Footer styles */
-.site-footer {
-    background-color: #333;
-    color: #fff;
-    padding: 40px 0;
-}
-
-.site-footer a {
-    color: #fff;
-    text-decoration: none;
-}
-
-/* note the use of fractional units for grid columns */
-.footer-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 24px;
-    align-items: start;
-}
-
-.footer-col h4 {
-    margin-bottom: 8px;
-}
-
-.footer-links ul {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-links li {
-    margin-bottom: 6px;
-}
-
-.footer-social .social-icons {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-}
-
-.social-icons a {
-    display: inline-block;
-    margin-right: 12px;
-    color: inherit;
-}
-
-.social-icons a {
-    display: inline-flex;
-    width: 44px;
-    height: 44px;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255,255,255,0.06);
-    border-radius: 50%;
-    color: #fff;
-    /* testing different font size - base was 18px */
-    font-size: 22px;
-}
-
-.social-icons a:hover {
-    background: rgba(255,255,255,0.12);
-}
-
-.social-icon {
-        display: block;
-}
-
-/* Social icon image sizing */
-.social-icons img.social-icon {
-    width: 22px;
-    height: 22px;
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 12px;
-}
-
-/* Social icon size for img and inline svg */
-.social-icons img.social-icon,
-.social-icons svg.social-icon {
-    width: 22px;
-    height: 22px;
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 12px;
-    color: inherit;        /* lets fill use currentColor */
-}
-
-.social-icons svg.social-icon { fill: currentColor; }
-
-/* footer responsive: stack columns on smaller screens */
-@media (max-width: 768px) {
-    .footer-grid {
-        grid-template-columns: 1fr;
-        text-align: left;
-    }
-    .social-icons a {
-        width: 40px;
-        height: 40px;
-        font-size: 16px;
-    }
-}
-
-/* Responsive styles for hamburger display mostly */
-@media (max-width: 768px) {
-     .hamburger {
-        display: flex;
-    }
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        background: #f8f8f8;
-        position: absolute;
-        top: 50px;
-        left: 0;
-        width: 100%;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-        z-index: 100;
-    }
-    .nav-links.show {
-        display: flex;
-    }
-    nav ul {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-    nav li {
-        margin-left: 0;
-        margin-bottom: 10px;
-    }
-    .container {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    nav ul {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-    .hero img {
-        width: 100%;
-        height: auto;
-    }
-
-    .testimonials, .cta {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .testimonial, .cta-item {
-        width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-    header, footer, main {
-        padding: 1rem;
-    }
-    .logo {
-        font-size: 1.2rem;
-    }
-    h1, h2, h3 {
-        font-size: 1.1rem;
-    }
-}
-
-/* Additional responsive utilities.  From standard CSS classes */
-@media (max-width: 768px) {
-    body {
-        padding: 16px;
-    }
-    
-    /* Add mobile-friendly adjustments */
-    h1, h2, h3 {
-        line-height: 1.3;
-    }
-    
-    img {
-        max-width: 100%;
-        height: auto;
-    }
-}
-
-/* Print styles -- a template suggested I add these lines for printing*/
-@media print {
-    * {
-        background: transparent !important;
-        box-shadow: none !important;
-    }
-}
-
-/* Ensure hamburger icon is visible and contrasty on small screens */
-@media (max-width: 768px) {
-    .hamburger {
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-        padding: 6px;
-        background: transparent;
-        border: 0;
-        cursor: pointer;
-        z-index: 1100; /* sit above other elements */
-    }
-
-    .hamburger span {
-        display: block;
-        width: 26px;      /* visible bar length */
-        height: 3px;      /* bar thickness */
-        background: #222; /* dark color for contrast on light headers */
-        border-radius: 2px;
-        margin: 3px 0;
-        transition: transform 0.25s ease, opacity 0.25s ease;
-    }
-
-    /* Optional: slightly larger touch target on very small screens */
-    @media (max-width: 480px) {
-        .hamburger { width: 48px; height: 48px; padding: 8px; }
-        .hamburger span { width: 30px; height: 3.5px; }
-    }
-}
-
-/* Ensure hamburger bars are black on tablet & mobile for contrast */
-@media (max-width: 1024px) {
-    .hamburger { display: flex !important; z-index: 1100; }
-    .hamburger span {
-        width: 26px;
-        height: 3px;
-        background: #000 !important;   /* black bars */
-        border-radius: 2px;
-        margin: 3px 0;
-    }
-}
-
-/* Corner logo: clickable, constrained to header height and responsive */
-:root {
-    --gyf-logo-height: 113px;
-    --gyf-gutter: 24px;
-}
-
-.header-row {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding-left: calc(var(--gyf-logo-height) + var(--gyf-gutter));
-}
-
-.corner-link {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1300;
-    display: block;
-    text-decoration: none;
-}
-
-.corner-logo {
-    display: block;
-    height: var(--gyf-logo-height);
-    width: auto;
-    object-fit: contain;
-    pointer-events: auto;
-    transition: height 180ms ease;
-}
-
-/* Tablet */
-@media (max-width: 1024px) {
-    :root { --gyf-logo-height: 88px; --gyf-gutter: 16px; }
-    .header-row { padding-left: calc(var(--gyf-logo-height) + var(--gyf-gutter)); }
-}
-
-/* Mobile */
-@media (max-width: 480px) {
-    :root { --gyf-logo-height: 64px; --gyf-gutter: 12px; }
-    .header-row { padding-left: calc(var(--gyf-logo-height) + var(--gyf-gutter)); }
-    .corner-logo { height: var(--gyf-logo-height); }
-}
-
-@media (max-width: 768px) {
-
-    /* Ensure hamburger visible & bars are black */
-    .header-row .hamburger {
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-        z-index: 1300;
-    }
-    .header-row .hamburger span {
-        display: block;
-        width: 26px;
-        height: 3px;
-        background: #000 !important;
-        border-radius: 2px;
-        margin: 4px 0;
-        transition: transform .2s ease, opacity .2s ease;
-    }
-
-    /* Hide menu by default, show only when .show present */
-    .header-row .navbar .nav-links {
-        display: none !important;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 8px;
-        right: 8px;
-        background-color: rgba(255,255,255,0.96) !important;
-        border: 1px solid rgba(0,0,0,0.12);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-        padding: 0.2rem 0;
-        border-radius: 6px;
-        z-index: 1200;
-    }
-
-    .header-row .navbar .nav-links.show {
-        display: flex !important;
-    }
-
-    /* Menu links: black text, light sheet, subtle separators */
-    .header-row .navbar .nav-links li a {
-        display: block;
-        color: #000 !important;
-        background: transparent !important;
-        padding: 12px 16px;
-        border-bottom: 1px solid rgba(0,0,0,0.04);
-    }
-    .header-row .navbar .nav-links li:last-child a { border-bottom: none; }
-
-    .header-row .navbar .nav-links li a:hover,
-    .header-row .navbar .nav-links li a:focus {
-        background-color: rgba(0,0,0,0.04);
-        color: #000 !important;
-    }
-
-    /* Strong active nav style (light green background, black text) */
-    .header-row .navbar .nav-links li a.active,
-    .navbar .nav-links li a.active,
-    .header-row .nav-links li a.active {
-        background-color: #bff1c8 !important; /* light green */
-        color: #000 !important;               /* black text */
-        font-weight: 600;
-    }
-
-    /* Keep same look on hover/focus so other rules don't change it */
-    .header-row .navbar .nav-links li a.active:hover,
-    .header-row .navbar .nav-links li a.active:focus,
-    .navbar .nav-links li a.active:hover,
-    .navbar .nav-links li a.active:focus {
-        background-color: #bff1c8 !important;
-        color: #000 !important;
-    }
-}
-
-/* Force mobile/tablet expanded hamburger menu to be a light sheet with border
-   High-specificity rule placed at end to override prior rules */
-@media (max-width: 1024px) {
-    .header-row .navbar .nav-links.show,
-    .navbar .nav-links.show {
-        display: flex !important;
-        flex-direction: column !important;
-        position: absolute !important;
-        top: calc(100% + 8px) !important;
-        left: 8px !important;
-        right: 8px !important;
-        background-color: rgba(255,255,255,0.98) !important; /* light sheet */
-        border: 1px solid rgba(0,0,0,0.12) !important;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important;
-        padding: 0.25rem 0 !important;
-        border-radius: 8px !important;
-        z-index: 1400 !important; /* sit above header images */
-    }
-
-    /* ensure links inside use black text and visible separators */
-    .header-row .navbar .nav-links.show li a,
-    .navbar .nav-links.show li a {
-        color: #000 !important;
-        background: transparent !important;
-        padding: 12px 16px !important;
-        border-bottom: 1px solid rgba(0,0,0,0.04) !important;
-    }
-    .header-row .navbar .nav-links.show li:last-child a,
-    .navbar .nav-links.show li:last-child a {
-        border-bottom: none !important;
-    }
-}
-
-/* Resources page: page background (match other pages), white card panels */
-.page-resources {
-    background-color: var(--page-bg, #eaf7ed); /* fallback pale green similar to other pages */
-    color: #0b2a1a;
-    min-height: 100vh;
-}
-
-/* card utility used for main and sidebar panels */
-.card {
+.service {
+    flex: 1 1 calc(33.333% - 20px);
+    max-width: calc(33.333% - 20px);
     background: #fff;
-    border-radius: 10px;
-    padding: 22px;
-    box-shadow: 0 6px 20px rgba(11, 42, 26, 0.06);
-    border: 1px solid rgba(11, 42, 26, 0.06);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: left;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
 }
 
-/* Resources — card/grid fixes: 3-column cards on desktop, responsive down to 1-column */
-.resources-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 320px; /* main / sidebar */
-    gap: 28px;
-    align-items: start;
-    padding: 32px 0;
+/* contact us form section styles */
+section {
+    background-color: #e0f2e0; /* Light Green Background */
+    padding: 20px;
+    border-radius: 8px;
+    flex: 1;
 }
 
-/* Main resource grid: 3 columns on desktop */
-.resource-list,
-.services.resource-list {
+.contact-info img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+}
+
+/* Layout for contact page: map left, form right on desktop; stacked on mobile */
+.contact-wrapper {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+.contact-info {
+    flex: 1 1 55%;
+    max-width: 55%;
+}
+
+.contact-form {
+    flex: 1 1 40%;
+    max-width: 40%;
+}
+
+.contact-form form {
+    background: #fff;
+    padding: 16px;
+    border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+    .contact-wrapper {
+        flex-direction: column;
+    }
+    .contact-info, .contact-form {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.contact-form button {
+    background-color: #66ff66; /* Bright Green Button */
+    color: rgb(12, 12, 12);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #4CAF50;
+}
+
+/* Reusable button style used across the site */
+.btn {
+    background-color: #66ff66;
+    color: rgb(12,12,12);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.12s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: #4CAF50;
+    transform: translateY(-1px);
+}
+
+/* Stack team members into a single column on smaller screens */
+@media (max-width: 768px) {
+    .team-member {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
+
+/* Services section: three cards across on desktop, stacked on small screens */
+.services {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+.service {
+    flex: 1 1 calc(33.333% - 20px);
+    max-width: calc(33.333% - 20px);
+    background: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: left;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Fix: services cards, images and aside width */
+
+/* container constraints (consistent page width) */
+.container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+    box-sizing: border-box;
+}
+
+/* Services grid (desktop 3-up, then 2-up, then 1-up) */
+.hero .services,
+.services {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
+    gap: 24px;
     align-items: start;
+    width: 100%;
 }
 
-/* Card basics (applies to resource cards and sidebar panels) */
-.card {
-    background: #fff;
-    color: #0b2a1a; /* dark text for readability */
-    padding: 18px;
-    border-radius: 10px;
-    box-shadow: 0 6px 20px rgba(11,42,26,0.06);
-    border: 1px solid rgba(11,42,26,0.06);
-    overflow: visible;
-}
-
-/* Individual resource card */
-.service.resource-item.card,
-.resource-item.card {
+/* Each service card */
+.service {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    height: 100%;
+    background: #fff;
+    padding: 18px;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(11,42,26,0.05);
+    border: 1px solid rgba(11,42,26,0.06);
+    color: inherit;
 }
 
-/* Make sure images render and have consistent height */
-.service.resource-item.card img,
-.resource-item.card img {
-    width: 100%;
+/* Images inside service cards - ensure visible and cover area */
+.service img {
+    width: 100% !important;
     height: 160px;
     object-fit: cover;
-    border-radius: 8px;
     display: block;
+    border-radius: 8px;
 }
 
-/* Ensure heading / text are visible */
-.service.resource-item.card h3,
-.resource-item.card h3 {
-    margin: 0 0 6px 0;
-    color: inherit;
-    font-size: 1.05rem;
-}
-.service.resource-item.card p,
-.resource-item.card p {
-    margin: 0 0 10px 0;
-    color: inherit;
-    line-height: 1.45;
-}
-
-/* Buttons inside cards */
-.service.resource-item.card .btn,
-.resource-item.card .btn {
+/* Buttons at bottom of card */
+.service .btn {
     margin-top: auto;
     align-self: flex-start;
 }
 
-/* Sidebar cards spacing */
-.resources-sidebar .sidebar-item.card {
-    margin-bottom: 18px;
-    padding: 16px;
+/* Sidebar / aside width (for pages that use .resources-wrapper or similar) */
+.resources-wrapper,
+.container-grid,
+.page-layout {
+    /* keep existing grid usage but ensure aside is not too narrow */
+}
+
+/* Specific resources-wrapper adjustment */
+.resources-wrapper {
+    grid-template-columns: 1fr 360px; /* main / aside */
+    gap: 28px;
+}
+
+/* Ensure sidebar has minimum width */
+.resources-sidebar,
+.sidebar {
+    min-width: 300px;
 }
 
 /* Responsive breakpoints */
 @media (max-width: 1100px) {
-    .resource-list { grid-template-columns: repeat(2, 1fr); }
-    .resources-wrapper { grid-template-columns: 1fr 300px; gap: 20px; padding: 24px 0; }
+    .hero .services,
+    .services {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .resources-wrapper { grid-template-columns: 1fr 320px; }
+    .resources-sidebar { min-width: 260px; }
 }
 
 @media (max-width: 768px) {
-    /* stack main + sidebar, single column cards */
-    .resources-wrapper { grid-template-columns: 1fr; padding: 18px 12px; }
-    .resource-list { grid-template-columns: 1fr; gap: 16px; }
-    .resources-sidebar { order: 2; }
-    .resources-main { order: 1; }
-    .corner-logo { height: 64px; } /* ensure header spacing remains */
+    .hero .services,
+    .services {
+        grid-template-columns: 1fr;
+    }
+    .resources-wrapper {
+        grid-template-columns: 1fr;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+    .resources-sidebar { min-width: auto; width: 100%; }
+    .corner-logo { height: 64px; } /* keep header spacing */
 }
 
-/* Safety: force visible text if some other rule set color wrong */
-.page-resources,
-.page-resources .resources-main,
-.page-resources .resources-sidebar,
-.page-resources .card,
-.page-resources .resource-item,
-.page-resources .service {
-    color: #0b2a1a !important;
+/* Safety: ensure images and text are visible if earlier rules hid them */
+.services .service img,
+.resource-item img { visibility: visible; opacity: 1; }
+.services .service,
+.resource-list .service,
+.resource-item { color: #0b2a1a !important; }
+
+/* ---- Enforce About (team-member) card style for Services & Resources ----
+   Place this at the end of styles.css so it overrides earlier rules. */
+
+.services,
+.resource-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 across on large screens */
+    gap: 24px;
+    align-items: start;
+    width: 100%;
 }
+
+/* Make .service and .resource-item use the team-member visual style */
+.services .service,
+.resource-list .service,
+.resource-item {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    border: 1px solid rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    min-height: 320px; /* visual parity with About cards */
+    box-sizing: border-box;
+    color: #0b2a1a;
+    text-align: left;
+}
+
+/* Image styling: visible, uniform height, rounded */
+.services .service img,
+.resource-list .service img,
+.resource-item img {
+    width: 100%;
+    height: 220px;             /* match About team-member visual height */
+    object-fit: cover;
+    border-radius: 6px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+/* Heading/text like team-member */
+.services .service h3,
+.resource-item h3 {
+    margin: 6px 0;
+    font-size: 1.05rem;
+}
+
+/* Buttons consistent width and pinned to bottom */
+.services .service .btn,
+.resource-list .service .btn,
+.resource-item .btn {
+    margin-top: auto;
+    align-self: center;
+    min-width: 160px;
+    text-align: center;
+}
+
+/* Resources main column wider so cards look wider */
+.resources-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 28px;
+}
+
+/* Sidebar min width */
+.resources-sidebar,
+.sidebar { min-width: 300px; }
+
+/* Responsive breakpoints */
+@media (max-width: 1100px) {
+    .services,
+    .resource-list { grid-template-columns: repeat(2, 1fr); }
+    .resources-wrapper { grid-template-columns: 1fr 320px; }
+}
+@media (max-width: 768px) {
+    .services,
+    .resource-list { grid-template-columns: 1fr; gap: 16px; }
+    .services .service,
+    .resource-list .service { min-height: auto; }
+    .services .service img,
+    .resource-list .service img { height: 160px; }
+}
+
+/* Safety: ensure images and text are visible if earlier rules hid them */
+.services .service img,
+.resource-item img { visibility: visible; opacity: 1; }
+.services .service,
+.resource-list .service,
+.resource-item { color: #0b2a1a !important; }
