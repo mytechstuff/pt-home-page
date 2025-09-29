@@ -922,11 +922,22 @@ section {
         color: #000 !important;
     }
 
-    /* Active link style */
-    .header-row .navbar .nav-links li a.active {
+    /* Strong active nav style (light green background, black text) */
+    .header-row .navbar .nav-links li a.active,
+    .navbar .nav-links li a.active,
+    .header-row .nav-links li a.active {
+        background-color: #bff1c8 !important; /* light green */
+        color: #000 !important;               /* black text */
+        font-weight: 600;
+    }
+
+    /* Keep same look on hover/focus so other rules don't change it */
+    .header-row .navbar .nav-links li a.active:hover,
+    .header-row .navbar .nav-links li a.active:focus,
+    .navbar .nav-links li a.active:hover,
+    .navbar .nav-links li a.active:focus {
         background-color: #bff1c8 !important;
         color: #000 !important;
-        font-weight: 600;
     }
 }
 
