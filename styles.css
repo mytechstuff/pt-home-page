@@ -612,6 +612,19 @@ section {
     margin-right: 12px;
 }
 
+/* Social icon size for img and inline svg */
+.social-icons img.social-icon,
+.social-icons svg.social-icon {
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 12px;
+    color: inherit;        /* lets fill use currentColor */
+}
+
+.social-icons svg.social-icon { fill: currentColor; }
+
 /* footer responsive: stack columns on smaller screens */
 @media (max-width: 768px) {
     .footer-grid {
@@ -744,8 +757,58 @@ section {
     }
 }
 
-/* Ensure hamburger bars contrast with header background on mobile */
-@media (max-width: 768px) {
-    .hamburger { display: flex !important; z-index:1100; }
-    .hamburger span { width:26px; height:3px; background:#fff; border-radius:2px; }
+/* Ensure hamburger bars are black on tablet & mobile for contrast */
+@media (max-width: 1024px) {
+    .hamburger { display: flex !important; z-index: 1100; }
+    .hamburger span {
+        width: 26px;
+        height: 3px;
+        background: #000 !important;   /* black bars */
+        border-radius: 2px;
+        margin: 3px 0;
+    }
+}
+
+/* Small phones: slightly larger touch bars */
+@media (max-width: 480px) {
+    .hamburger span {
+        width: 30px;
+        height: 3.5px;
+        background: #000 !important;
+    }
+}
+
+/* Corner logo: fixed-height ~113px, keep aspect ratio, shrink on tablet/mobile */
+.corner-logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 113px;      /* target header height */
+    width: auto;
+    object-fit: contain;
+    display: block;
+    z-index: 1200;
+    pointer-events: none; /* don't block clicks under the logo */
+    transition: height 180ms ease;
+}
+
+/* Make room for logo so header content doesn't overlap */
+.header-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-left: calc(113px + 24px); /* logo height + gutter */
+}
+
+/* Tablet / small laptop */
+@media (max-width: 1024px) {
+    .corner-logo { height: 88px; }
+    .header-row { padding-left: calc(88px + 16px); }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .corner-logo { height: 64px; }
+    .header-row { padding-left: calc(64px + 12px); }
 }
