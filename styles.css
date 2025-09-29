@@ -822,39 +822,51 @@ section {
     }
 }
 
-/* Corner logo: fixed-height ~113px, keep aspect ratio, shrink on tablet/mobile */
-.corner-logo {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 113px;      /* target header height */
-    width: auto;
-    object-fit: contain;
-    display: block;
-    z-index: 1200;
-    pointer-events: none; /* don't block clicks under the logo */
-    transition: height 180ms ease;
+/* Corner logo: clickable, constrained to header height and responsive */
+:root {
+    --gyf-logo-height: 113px; /* desktop header height */
+    --gyf-gutter: 24px;
 }
 
-/* Make room for logo so header content doesn't overlap */
 .header-row {
-    position: relative;
+    position: relative;               /* container for absolutely-positioned logo */
     display: flex;
     align-items: center;
     gap: 12px;
-    padding-left: calc(113px + 24px); /* logo height + gutter */
+    padding-left: calc(var(--gyf-logo-height) + var(--gyf-gutter));
+}
+
+/* Anchor wraps the image so the logo is clickable */
+.corner-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1300;
+    display: block;
+    text-decoration: none;
+}
+
+/* Image sizing: height-based so aspect ratio preserved, clickable */
+.corner-logo {
+    display: block;
+    height: var(--gyf-logo-height);
+    width: auto;
+    object-fit: contain;
+    pointer-events: auto; /* allow clicks */
+    transition: height 180ms ease;
 }
 
 /* Tablet / small laptop */
 @media (max-width: 1024px) {
-    .corner-logo { height: 88px; }
-    .header-row { padding-left: calc(88px + 16px); }
+    :root { --gyf-logo-height: 88px; --gyf-gutter: 16px; }
+    .header-row { padding-left: calc(var(--gyf-logo-height) + var(--gyf-gutter)); }
 }
 
 /* Mobile */
 @media (max-width: 480px) {
-    .corner-logo { height: 64px; }
-    .header-row { padding-left: calc(64px + 12px); }
+    :root { --gyf-logo-height: 64px; --gyf-gutter: 12px; }
+    .header-row { padding-left: calc(var(--gyf-logo-height) + var(--gyf-gutter)); }
+    .corner-logo { height: var(--gyf-logo-height); }
 }
 
 @media (max-width: 768px) {
@@ -917,5 +929,38 @@ section {
         background-color: #bff1c8 !important;
         color: #000 !important;
         font-weight: 600;
+    }
+}
+
+/* Force mobile/tablet expanded hamburger menu to be a light sheet with border
+   High-specificity rule placed at end to override prior rules */
+@media (max-width: 1024px) {
+    .header-row .navbar .nav-links.show,
+    .navbar .nav-links.show {
+        display: flex !important;
+        flex-direction: column !important;
+        position: absolute !important;
+        top: calc(100% + 8px) !important;
+        left: 8px !important;
+        right: 8px !important;
+        background-color: rgba(255,255,255,0.98) !important; /* light sheet */
+        border: 1px solid rgba(0,0,0,0.12) !important;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important;
+        padding: 0.25rem 0 !important;
+        border-radius: 8px !important;
+        z-index: 1400 !important; /* sit above header images */
+    }
+
+    /* ensure links inside use black text and visible separators */
+    .header-row .navbar .nav-links.show li a,
+    .navbar .nav-links.show li a {
+        color: #000 !important;
+        background: transparent !important;
+        padding: 12px 16px !important;
+        border-bottom: 1px solid rgba(0,0,0,0.04) !important;
+    }
+    .header-row .navbar .nav-links.show li:last-child a,
+    .navbar .nav-links.show li:last-child a {
+        border-bottom: none !important;
     }
 }
